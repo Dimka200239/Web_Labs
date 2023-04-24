@@ -41,7 +41,6 @@ var main = function () {
 	var toDos = [
 		"Посмотреть весь список телепередач",
 		"Посмотреть весь список каналов",
-		"Посмотреть весь список каналов",
 		"Посмотреть расписание конкретной телепередачи",
 		"Посмотреть расписание конкретного канала",
 		"Посмотреть расписание на всю неделю",
@@ -51,30 +50,30 @@ var main = function () {
 	
 	$(".tabs a span").toArray().forEach(function (element) {
 		$(element).on("click", function () {
-		var $element = $(element);
-		$("main .content").empty();
-		if ($element.parent().is(":nth-child(1)")) {
-			$content = $("<ul>");
-			for (var i = toDos.length - 1; i > -1; i--) {
-				$content.append($("<li>").text(toDos[i]));
+			var $element = $(element);
+			$("main .content").empty();
+			if ($element.parent().is(":nth-child(1)")) {
+				$content = $("<ul>");
+				for (var i = toDos.length - 1; i > -1; i--) {
+					$content.append($("<li>").text(toDos[i]));
+				}
+				$("main .content").append($content);
+			} else if ($element.parent().is(":nth-child(2)")) {
+				$content = $("<ul>");
+				toDos.forEach(function (todo) {
+					$content.append($("<li>").text(todo));
+				});
+				$("main .content").append($content);
+			} else if ($element.parent().is(":nth-child(3)")) {
+				$(".content").append("<input>");
+				$(".content").append("<br />");
+				$(".content").append("<button>Добавить</button>");
+				$(".content input").addClass("inputStyle");
+				$(".content br").addClass("clear");
+				$(".content button").addClass("buttonStyle");
 			}
-			$("main .content").append($content);
-		} else if ($element.parent().is(":nth-child(2)")) {
-			$content = $("<ul>");
-			toDos.forEach(function (todo) {
-				$content.append($("<li>").text(todo));
-			});
-			$("main .content").append($content);
-		} else if ($element.parent().is(":nth-child(3)")) {
-			$(".content").append("<input>");
-			$(".content").append("<br />");
-			$(".content").append("<button>Добавить</button>");
-			$(".content input").addClass("inputStyle");
-			$(".content br").addClass("clear");
-			$(".content button").addClass("buttonStyle");
-		}
-		
-		return false;
+			
+			return false;
 		});
 	});
 	
